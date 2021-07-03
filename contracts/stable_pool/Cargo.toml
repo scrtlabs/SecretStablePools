@@ -1,0 +1,33 @@
+[package]
+name = "secretswap-stablepools"
+version = "0.0.1"
+authors = ["Enigma MPC"]
+edition = "2018"
+description = "A SecretSwap stable pools contract"
+license = "MIT"
+exclude = [
+    # Those files are rust-optimizer artifacts. You might want to commit them for convenience but they should not be part of the source code publication.
+    "contract.wasm",
+    "hash.txt",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+# for quicker tests, cargo test --lib
+# for more explicit tests, cargo test --features=backtraces
+backtraces = ["cosmwasm-std/backtraces"]
+debug-print = ["cosmwasm-std/debug-print"]
+
+[dependencies]
+secret-toolkit = { git = "https://github.com/enigmampc/secret-toolkit", rev = "v0.1.1-debug-print" }
+cosmwasm-storage = { git = "https://github.com/enigmampc/SecretNetwork", tag = "v1.0.4-debug-print" }
+cosmwasm-std = { git = "https://github.com/enigmampc/SecretNetwork", tag = "v1.0.4-debug-print" }
+lp-token = { path = "../lp_token" }
+schemars = "0.7"
+serde = { version = "1.0.103", default-features = false, features = ["derive"] }
+base64 = "0.13.0"
+primitive-types = { version = "0.9.0", default-features = false }

@@ -1,5 +1,5 @@
 [workspace]
-members = ["packages/*", "contracts/*"]
+members = ["contracts/*"]
 
 [profile.release.package.secretswap]
 opt-level = 3
